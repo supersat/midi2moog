@@ -51,7 +51,7 @@ Event* curEvent;
 Chunk* curChunk;
 Chunk* track[4];
 int curTrack;
-int tempo;
+int tempo = 500000; // 120 BPM by default
 int ticksPerQN;
 
 void addEvent(char type, float value)
@@ -313,7 +313,7 @@ void serialize(FILE* outFile)
 	// timing issues and the fact that they all use the same synthesis parameters.
 	for (curTrack = 0; curTrack < 1; curTrack++) {
 		if (!track[curTrack])
-			return;
+			break;
 
 		bitPos = putValue(bits, bitPos, getNumChunks(track[curTrack]), 10);
 		
